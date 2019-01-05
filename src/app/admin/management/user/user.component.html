@@ -1,0 +1,69 @@
+<section id="base-style">
+	<div class="row">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-header">
+					<h4 class="card-title">User Management</h4>
+				</div>
+				<div class="card-body collapse show">
+					<div class="card-block card-dashboard">
+            <div class="actions float-left dataTables_filter">
+                <label>Search</label>
+                    <input class="form-control form-control-sm" type="text" name="search" [(ngModel)]="filter" placeholder="Search">      
+      <br>
+            </div>
+
+
+                        <table class="table table-striped table-bordered base-style">
+							<thead>
+                    <tr><th>#</th>
+                        <th (click)="sort('_id')">Name
+                        <span class="ft-arrow-up" *ngIf="key =='_id'" [ngClass]="{'ft-arrow-up':reverse,'ft-arrow-down':!reverse}"></span>
+                        </th>
+                        <th>Email
+                        <span class="ft-arrow-up" *ngIf="key =='email'" [ngClass]="{'ft-arrow-up':reverse,'ft-arrow-down':!reverse}"></span>
+                        </th>
+                        <th>Phone Number</th>
+                        <th>Action</th>
+                        
+                    </tr>
+							</thead>
+							<tbody>
+        <tr *ngFor="let page of pages  | orderBy: key : !reverse | filter:filter | paginate: { itemsPerPage: 25, currentPage: p };  let i = index;">
+            <td  >{{i+1}}</td>
+            <td>{{page.full_name | lowercase}}</td>
+            <td>{{page.email | lowercase}}</td>
+            <td>{{page.phone_number}}</td>
+            <td>
+
+                <button class="btn btn-raised btn-success" (click)="deactive(page._id)" *ngIf="page.active==1">
+                    Active</button>
+                    <button class="btn btn-raised btn-danger"  (click)="active(page._id)" *ngIf="page.active==0">
+                        Deactive</button>
+    <a class="btn btn-raised btn-icon btn-info mr-1"  [routerLink]="['/admin/management/view',page._id]">
+                            <i class="fa fa-eye"></i></a>
+                
+                    
+                                   
+        </td>
+       
+
+        </tr>
+
+        <tr *ngIf="(pages  | filter:filter).length === 0 ">
+            <td colspan="5" style="text-align:center;">No result found</td>            
+    
+            </tr>
+
+        </tbody>
+						
+										
+                        </table>		
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+		
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

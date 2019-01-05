@@ -1,0 +1,87 @@
+<app-topbar></app-topbar>
+<section  class="overall_home"> 
+	<div class="banner-videio margin_bottom40">
+			<div class="banner"  *ngIf="userCount.count == 0" >
+					<div class="container">
+						<h1 class="banner_txt">Always the ride you want <br/>
+						The best way to get wherever you're going</h1>
+					</div>
+			</div>
+		 <div class="banner" [style.background-image]="'url(' + backgroundUrl + ')'" *ngIf="userCount.count == 1" >
+			<div class="container">
+				<h1 class="banner_txt text-center">{{this.pages.title}}</h1>
+			</div>
+		 </div>
+		 
+
+	</div>
+	 
+	 <div class="features">
+		<div class="container">
+			<div class="feature_list" *ngFor="let page of home; let index=index; let odd=odd; let even=even; " >
+				<div class="row" *ngIf="even" >
+					<div class="col-12 col-sm-12 col-md-5 col-lg-5 dis_none_mobile">
+						<div class="feature_img img1">
+							<img class="bg-image" src="{{this.url}}/assets/uploads/{{page.image}}" alt="images">
+						</div>
+					</div>
+					<div class="col-12 col-sm-12 col-md-7 col-lg-7 padding50">
+						<h2 class="feature_title">{{page.title}}</h2>
+						<p class="feature_desc" [innerHTML]="page.content"></p>
+					</div>
+				</div>
+
+				<div class="row" *ngIf="odd">
+						<div class="col-12 col-sm-12 col-md-7 col-lg-7 padding50">
+								<h2 class="feature_title">{{page.title}}</h2>
+								<p class="feature_desc" [innerHTML]="page.content"></p>
+							</div>
+							<div class="col-12 col-sm-12 col-md-5 col-lg-5 dis_none_mobile">
+								<div class="feature_img img2">
+									<img class="bg-image" src="{{this.url}}/assets/uploads/{{page.image}}" alt="images">
+								</div>
+							</div>
+							
+						</div>
+
+
+			</div>
+			
+			
+			
+			
+		</div>
+	 </div>
+	 	
+	</section>
+	
+	
+	<section >
+		<div class="download_app margin_top80"  *ngFor="let users of user" >
+			<div class="container">
+				<div class="row">
+					<div class="col-12 col-sm-12 col-md-5 col-lg-5">
+						<div class="book_app padding_top50">
+							<h2>{{users.apptitle}}</h2>
+							<p>{{users.appcontent}}</p>
+						</div>
+						<div class="row">
+						<div class="col-6">
+						<a  *ngIf="users.androidUser" href="{{users.androidUser}}" target="_blank" >
+							<img src="{{this.url}}/assets/app-user/images/playstore.png" class="img-fluid"/></a>
+						</div>
+						<div class="col-6">
+						<a *ngIf="users.iosUser" href="{{users.iosUser}}" target="_blank">
+							<img src="{{this.url}}/assets/app-user/images/appstore.png" class="img-fluid"/></a>
+						</div>
+						</div>
+					</div>
+					<div class="col-12 col-sm-12 col-md-1 col-lg-1"></div>
+					<div class="col-12 col-sm-12 col-md-6 col-lg-6 dis_none_mobile">
+						<img src="{{this.url}}/assets/app-user/images/home/app_modal.png" class="img-fluid"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<app-footer></app-footer>

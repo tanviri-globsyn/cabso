@@ -1,0 +1,56 @@
+    <section id="base-style">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Driver-Payment Management</h4>
+                    </div>
+                    <div class="card-body collapse show">
+                        <div class="card-block card-dashboard">
+                            <div class="actions float-right dataTables_filter">
+
+                                <br>
+                            </div>
+                            <table class="table table-striped table-bordered base-style">
+                                <thead>
+                                    <tr><th>#</th>
+                                        <th>Driver Name</th>
+                                        <th>Payment type</th>
+                                        <th>Ridefare</th>
+                                        <th>Commission</th>                           
+                                        <th>Tax</th>     
+                                        <th>Earning</th>     
+                                        <th>Total Ride</th>     
+                                        <!-- <th>Action</th> -->
+                                        <th>Approval</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let page of payment | paginate: { itemsPerPage: 25, currentPage: p };  let i = index">
+                                        <td>{{i + 1}}</td>
+                                        <td>{{page.driverID.full_name}}</td>
+                                        <td>{{page.driverID.payment_account.type}}</td>
+                                        <td> {{this.user.currencySymbol}}&nbsp;&nbsp;{{page.totalbaseprice}}</td>
+                                        <td>{{this.user.currencySymbol}}&nbsp;&nbsp;{{page.totalcommissionamount}}</td>
+                                        <td>{{this.user.currencySymbol}}&nbsp;&nbsp;{{page.totaltax}}</td>
+                                        <td>{{this.user.currencySymbol}}&nbsp;&nbsp;{{page.totalearnings}}</td>
+                                        <td>{{page.count}}</td>
+                                        <!-- <td>
+                                            <a class="btn btn-raised btn-icon btn-info mr-1"  [routerLink]="['/admin/management/driverPaymentDetails',page._id]">
+                                                <i class="fa fa-eye"></i></a>
+                                            </td> -->
+                                             <td><button type="button" (click)="payDriver(page.id,page.totalbaseprice,page.totalcommissionamount,page.totaltax,page.totalearnings,page.count)" class="btn btn-raised btn-dark square btn-min-width mr-1 mb-1">Approval</button></td>
+                                        </tr>
+                                        <tr *ngIf="(payment | filter:filter).length === 0 ">
+                                            <td colspan="9" style="text-align:center;">No result found</td>            
+                                        </tr>
+                                    </tbody>
+                                </table>		
+                                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>

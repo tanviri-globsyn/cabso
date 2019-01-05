@@ -1,0 +1,22 @@
+<header>
+	
+  <nav class="navbar header_bg padding15 web_menu fixed-top zindex66 border_bottom" id="custom-nav" role="navigation">
+
+     <div class="container width_header">
+        <div class="navbar-header pos_rel" *ngFor="let users of user">
+
+           <a class="navbar-brand logo_wdth" [routerLink]="['/index']">
+ <img src="{{this.url}}/assets/uploads/{{users.logo}}" class="img-fluid" alt="Logo" *ngIf="users.logo">
+           </a>
+        </div>
+        <ul class="nav navbar-nav ml-auto">
+<li><a [routerLink]="['/faq']" class="clr_black"  *ngIf="faqCount != 0">Help</a></li>
+           
+        </ul>
+        <!--/.nav-collapse -->
+     </div>
+     <!--/.container-fluid -->
+  </nav>
+
+ 
+</header>

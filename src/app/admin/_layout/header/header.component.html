@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-faded">
+    <div class="container-fluid">
+      <div class="navbar-header">
+  
+      </div>
+      <div class="navbar-container">
+        <div id="navbarSupportedContent" class="collapse navbar-collapse">
+      
+          <ul class="nav navbar-nav">
+       
+            <li class="dropdown nav-item" dropdown><a dropdownToggle id="dropdownBasic3" data-toggle="dropdown" class="nav-link position-relative dropdown-toggle"><i class="ft-user font-medium-3 blue-grey darken-4"></i>
+                <p class="d-none">User Settings</p></a>
+              <div ngbdropdownmenu="" aria-labelledby="dropdownBasic3" class="dropdown-menu dropdown-menu-right"  *ngFor="let user of user">
+                <a [routerLink]="['/admin/user/password/',user._id]" class="dropdown-item py-1"><i class="fa fa-key mr-2"></i><span>Change Password</span></a>
+                <div class="dropdown-divider"></div>
+                <a (click)="onLogoutClick()"  class="dropdown-item"  *ngIf="authService.loggedIn()"><i class="ft-power mr-2"></i><span>Logout</span></a>
+              </div>
+            </li>
+      
+          </ul>
+         
+        </div>
+      </div>
+    </div>
+  </nav>

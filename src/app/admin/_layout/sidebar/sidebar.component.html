@@ -1,0 +1,333 @@
+<div class="navbar navbar-default navbar-header">
+
+  <a class="navbar-brand" href="admin/dashboard"  *ngFor="let users of user" >
+    <img src="{{this.url}}/assets/uploads/{{users.logo}}" width="50px" height="auto" *ngIf="users.logo"  >
+
+  </a>
+
+
+  <button type="button" class="navbar-toggle collapsed" (click)="isCollapsed = !isCollapsed" aria-expanded="false">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+
+
+</div>
+
+
+<div data-active-color="black" data-background-color="white"  data-image="" class="app-sidebar collapse navbar-collapse"   [collapse]="isCollapsed" >
+
+  <div class="sidebar-header" >
+    <div class="logo clearfix"  *ngFor="let users of user">
+      <a [routerLink]="['/admin/index']"class="logo-text">
+        <div class="logo-img">
+          <img src="{{this.url}}/assets/uploads/{{users.logo}}" *ngIf="users.logo" >
+        </div>
+      </a>
+      <a class="nav-close d-block d-md-block d-lg-none d-xl-none" id="sidebarClose" (click)="isCollapsed = !isCollapsed">
+        <i class="ft-x"></i>
+      </a>
+    </div>
+  </div>
+
+
+  <div class="sidebar-content">
+    <div class="nav-container">
+
+
+      <ul id="main-menu-navigation" data-menu="menu-navigation" 
+      class="navigation navigation-main">
+
+      <li class="nav-item">
+        <a [routerLink]="['/admin/dashboard']" ><i class="ft-home"></i>
+          <span data-i18n="" class="menu-title">Dashboard</span></a>
+
+        </li>
+
+
+
+
+
+        <li class="has-sub nav-item" [class.open]="this.dropdown==1" dropdown (click)="change(1);$event.stopPropagation()"><a dropdownToggle >
+          <i class="ft-settings"></i><span data-i18n="" class="menu-title">Site Management</span></a>
+          <ul class="menu-content"   >
+            <li><a [routerLink]="['/admin/user/website']" class="menu-item">Website Setting</a>
+            </li>
+            <li><a [routerLink]="['/admin/user/email']" class="menu-item">Email Setting </a>
+            </li>
+            <li><a  [routerLink]="['/admin/user/sociallink']" class="menu-item">Social Link Setting</a>
+            </li>
+
+            <li  *ngFor="let data of user" ><a [routerLink]="['/admin/user/logo/',data._id]" class="menu-item">Logo Setting</a>
+            </li>
+            <li><a [routerLink]="['/admin/user/app']"  class="menu-item">Mobile App Setting</a>
+            </li>
+            <li><a [routerLink]="['/admin/user/payment']"  class="menu-item">Payment Setting</a>
+            </li>
+            <li  *ngFor="let icon of user" ><a [routerLink]="['/admin/user/favicon/',icon._id]" class="menu-item">Favicon Setting</a>
+            </li> 
+          </ul>
+        </li>
+
+        <li class="has-sub nav-item"  [class.open]="this.dropdown==2" dropdown (click)="change(2);$event.stopPropagation()"><a dropdownToggle>
+          <i class="ft-grid"></i><span data-i18n="" class="menu-title">Management</span></a>
+          <ul class="menu-content" >
+            <li><a [routerLink]="['/admin/management/user']" class="menu-item">User</a>
+            </li>
+            <li><a  [routerLink]="['/admin/management/driver']" class="menu-item">Driver </a>
+            </li>
+            <li><a  [routerLink]="['/admin/management/vehicle']" class="menu-item">Vehicle</a>
+            </li>
+
+            <li><a [routerLink]="['/admin/management/rides']" class="menu-item">Ride</a>
+            </li>
+
+            <li><a [routerLink]="['/admin/management/payment']" class="menu-item">Payment - User</a>
+            </li>            
+          </ul>
+        </li>
+
+
+        <li class="has-sub nav-item"  [class.open]="this.dropdown==5" dropdown (click)="change(5);$event.stopPropagation()"><a dropdownToggle>
+          <i class="ft-check-square"></i><span data-i18n="" class="menu-title">Payment</span></a>
+          <ul class="menu-content" >
+            <li><a [routerLink]="['/admin/management/driverPay']" class="menu-item">Driver Payment</a>
+            </li> 
+            <li><a [routerLink]="['/admin/management/settlementHistory']" class="menu-item">Settlement History</a>
+            </li> 
+
+          </ul>
+        </li>
+
+
+
+        <li class="has-sub nav-item" [class.open]="this.dropdown==3" dropdown (click)="change(3);$event.stopPropagation()"><a dropdownToggle>
+          <i class="ft-folder"></i><span data-i18n="" class="menu-title">Cab Management</span></a>
+          <ul class="menu-content">
+            <li><a [routerLink]="['/admin/bodytype/view']" class="menu-item">Bodytype</a>
+            </li>
+            <li><a [routerLink]="['/admin/amenities/view']" class="menu-item">Amenities </a>
+            </li>
+            <li><a  [routerLink]="['/admin/category/view']"  class="menu-item">Category </a>
+            </li>
+
+
+          </ul>
+        </li>
+
+
+        <li class=" nav-item">  <a [routerLink]="['/admin/commissions/view']" >
+          <i class="ft-percent"></i>
+          <span data-i18n="" class="menu-title">Commissions</span></a>
+        </li>
+
+
+        <li class="has-sub nav-item" [class.open]="this.dropdown==4"  dropdown (click)="change(4);$event.stopPropagation()"><a dropdownToggle>
+          <i class="ft-plus-square"></i><span data-i18n="" class="menu-title">Help Pages</span></a>
+          <ul class="menu-content" >
+            <li><a [routerLink]="['/admin/page/view']" class="menu-item">Driver</a>
+            </li>
+            <li><a [routerLink]="['/admin/page/user']" class="menu-item">User</a>
+            </li>                 
+          </ul>
+        </li>
+
+
+
+        <li class=" nav-item">  <a [routerLink]="['/admin/home/view']" >
+          <i class="ft-file"></i>
+          <span data-i18n="" class="menu-title">Home Pages</span></a>
+        </li>
+
+
+        <li class=" nav-item">  <a [routerLink]="['/admin/home/driver']" >
+          <i class="ft-grid"></i>
+          <span data-i18n="" class="menu-title">Driver Pages</span></a>
+        </li>
+
+
+
+        <li class=" nav-item">  <a [routerLink]="['/admin/banner/view']" >
+          <i class="fa fa-picture-o"></i>
+          <span data-i18n="" class="menu-title">Banner Management</span></a>
+        </li>
+
+        <li class=" nav-item">  <a [routerLink]="['/admin/faq/view']" >
+          <i class="fa fa-question-circle"></i>
+          <span data-i18n="" class="menu-title">Faq Management</span></a>
+        </li>
+
+
+
+      </ul> 
+
+
+    </div>
+  </div>
+
+
+</div> 
+
+
+<!-- window visible sidebar -->
+
+<div data-active-color="black" data-background-color="white"  data-image="" class="app-sidebar collapse navbar-collapse d-none d-lg-block"   [collapse]="isCollapsed" >
+
+  <div class="sidebar-header" >
+    <div class="logo clearfix"  *ngFor="let users of user">
+      <a [routerLink]="['/admin/index']"class="logo-text">
+        <div class="logo-img">
+          <img src="{{this.url}}/assets/uploads/{{users.logo}}" *ngIf="users.logo" >
+        </div>
+      </a>
+
+      <a class="nav-close d-block d-md-block d-lg-none d-xl-none" id="sidebarClose" (click)="isCollapsed = !isCollapsed">
+        <i class="ft-x"></i>
+      </a>
+    </div>
+  </div>
+
+
+  <div class="sidebar-content">
+    <div class="nav-container">
+
+
+      <ul id="main-menu-navigation" data-menu="menu-navigation" 
+      class="navigation navigation-main">
+
+      <li class="nav-item">
+        <a [routerLink]="['/admin/dashboard']" ><i class="ft-home"></i>
+          <span data-i18n="" class="menu-title">Dashboard</span></a>
+
+        </li>
+
+
+
+
+
+        <li class="has-sub nav-item" [class.open]="this.dropdown==1" dropdown (click)="change(1);$event.stopPropagation()"><a dropdownToggle >
+          <i class="ft-settings"></i><span data-i18n="" class="menu-title">Site Management</span></a>
+          <ul class="menu-content"   >
+            <li><a [routerLink]="['/admin/user/website']" class="menu-item">Website Setting</a>
+            </li>
+            <li><a [routerLink]="['/admin/user/email']" class="menu-item">Email Setting </a>
+            </li>
+            <li><a  [routerLink]="['/admin/user/sociallink']" class="menu-item">Social Link Setting</a>
+            </li>
+
+            <li  *ngFor="let data of user" ><a [routerLink]="['/admin/user/logo/',data._id]" class="menu-item">Logo Setting</a>
+            </li>
+            <li><a [routerLink]="['/admin/user/app']"  class="menu-item">Mobile App Setting</a>
+            </li>
+            <li><a [routerLink]="['/admin/user/payment']"  class="menu-item">Payment Setting</a>
+            </li>
+<li  *ngFor="let icon of user" ><a [routerLink]="['/admin/user/favicon/',icon._id]" class="menu-item">Favicon Setting</a>
+</li> 
+</ul>
+</li>
+
+<li class="has-sub nav-item"  [class.open]="this.dropdown==2" dropdown (click)="change(2);$event.stopPropagation()"><a dropdownToggle>
+  <i class="ft-grid"></i><span data-i18n="" class="menu-title">Management</span></a>
+  <ul class="menu-content" >
+    <li><a [routerLink]="['/admin/management/user']" class="menu-item">User</a>
+    </li>
+    <li><a  [routerLink]="['/admin/management/driver']" class="menu-item">Driver </a>
+    </li>
+    <li><a  [routerLink]="['/admin/management/vehicle']" class="menu-item">Vehicle</a>
+    </li>
+
+    <li><a [routerLink]="['/admin/management/rides']" class="menu-item">Ride</a>
+    </li>
+
+    <li><a [routerLink]="['/admin/management/payment']" class="menu-item">Payment - User</a>
+    </li>    
+
+
+
+  </ul>
+</li>
+
+<li class="has-sub nav-item"  [class.open]="this.dropdown==5" dropdown (click)="change(5);$event.stopPropagation()"><a dropdownToggle>
+  <i class="ft-check-square"></i><span data-i18n="" class="menu-title">Payment</span></a>
+  <ul class="menu-content" >
+    <li><a [routerLink]="['/admin/management/driverPay']" class="menu-item">Driver Payment</a>
+    </li> 
+    <li><a [routerLink]="['/admin/management/settlementHistory']" class="menu-item">Settlement History</a>
+    </li> 
+
+  </ul>
+</li>
+
+
+
+<li class="has-sub nav-item" [class.open]="this.dropdown==3" dropdown (click)="change(3);$event.stopPropagation()"><a dropdownToggle>
+  <i class="ft-folder"></i><span data-i18n="" class="menu-title">Cab Management</span></a>
+  <ul class="menu-content">
+    <li><a [routerLink]="['/admin/bodytype/view']" class="menu-item">Bodytype</a>
+    </li>
+    <li><a [routerLink]="['/admin/amenities/view']" class="menu-item">Amenities </a>
+    </li>
+    <li><a  [routerLink]="['/admin/category/view']"  class="menu-item">Category </a>
+    </li>
+
+
+  </ul>
+</li>
+
+
+<li class=" nav-item">  <a [routerLink]="['/admin/commissions/view']" >
+  <i class="ft-percent"></i>
+  <span data-i18n="" class="menu-title">Commissions</span></a>
+</li>
+
+
+<li class="has-sub nav-item" [class.open]="this.dropdown==4"  dropdown (click)="change(4);$event.stopPropagation()"><a dropdownToggle>
+  <i class="ft-plus-square"></i><span data-i18n="" class="menu-title">Help Pages</span></a>
+  <ul class="menu-content" >
+    <li><a [routerLink]="['/admin/page/view']" class="menu-item">Driver</a>
+    </li>
+    <li><a [routerLink]="['/admin/page/user']" class="menu-item">User</a>
+    </li>                 
+  </ul>
+</li>
+
+
+
+<li class=" nav-item">  <a [routerLink]="['/admin/home/view']" >
+  <i class="ft-file"></i>
+  <span data-i18n="" class="menu-title">Home Pages</span></a>
+</li>
+
+
+<li class=" nav-item">  <a [routerLink]="['/admin/home/driver']" >
+  <i class="ft-grid"></i>
+  <span data-i18n="" class="menu-title">Driver Pages</span></a>
+</li>
+
+
+
+<li class=" nav-item">  <a [routerLink]="['/admin/banner/view']" >
+  <i class="fa fa-picture-o"></i>
+  <span data-i18n="" class="menu-title">Banner Management</span></a>
+</li>
+
+<li class=" nav-item">  <a [routerLink]="['/admin/faq/view']" >
+  <i class="fa fa-question-circle"></i>
+  <span data-i18n="" class="menu-title">Faq Management</span></a>
+</li>
+
+
+
+</ul> 
+
+
+</div>
+</div>
+
+
+</div> 
+
+
+

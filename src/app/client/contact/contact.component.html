@@ -1,0 +1,118 @@
+<app-topbar></app-topbar>
+<section class="overall_home"> 
+	
+    <div class="help_banner">
+     <div class="container">
+       <div class="" *ngFor="let users of user">
+       <h1 class="help_txt text-center">{{users.helppagesheader}}</h1>
+         
+       </div>
+     </div>
+    </div>
+
+    
+    <div class="help_content margin_top80 margin_bottom80">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+            <button class="btn btn_default full_width primary_clr_bg help_mobile" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Menu </button>
+            <div class="help_menu collapse" id="collapseExample">
+              <div class="">
+            <div class="contact_div margin_bottom25">
+                <h6 routerLinkActive="active"><a [routerLink]="['/contact']" class="clr_black active">Contact Us</a></h6>
+                <h6 routerLinkActive="active"><a [routerLink]="['/faq']" class="clr_black"  *ngIf="faqCount != 0">FAQ</a></h6>
+              </div>
+ 
+            <div class="help_div" *ngIf="count != 0">
+                <h6 routerLinkActive="active"  *ngFor="let page of pages">
+                    <a  [routerLink]="['/help',page._id]"   class="clr_black" >{{ page.title }}</a>
+                    </h6>
+            </div>
+          </div>
+          </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-8 col-lg-9">
+            <div class="help_details">
+            <h4>Contact Us</h4>
+            <div class="email_phone margin_top30" *ngFor="let users of user">
+              <div class="row">
+              <div class="d-inline-block email_inner" *ngIf="users.smtpUsername">
+                <h6>Email</h6>
+                <h4>{{users.email}}</h4>
+              </div>
+              <div class="d-inline-block email_inner email_mobile" *ngIf="users.phone">
+                <h6>Phone</h6>
+                <h4>{{users.phone}}</h4>
+              </div>
+            </div>
+            </div>
+            <div class="contact_form">
+    <form [formGroup]="userForm" novalidate (ngSubmit)="sendMail(userForm.value)">
+    
+       <div class="form-group margin_top30">
+             
+         <!-- <label class="form-label">Name</label> -->
+         <input type="text" class="form-control"  formControlName="name" #name placeholder="Name">
+         <p *ngIf="userForm.controls['name'].touched && !userForm.controls['name'].valid">  
+            <span *ngIf="userForm.controls['name'].hasError('required') "  style="color:red">  
+               Name required  
+                </span>  
+            
+       
+            </p> 
+       </div>
+       
+
+
+       <div class="form-group margin_top30">
+         <!-- <label class="form-label">Email Id</label> -->
+         <input class="form-control" type="text" formControlName="email" #email placeholder="Email"/>
+         <p *ngIf="userForm.controls['email'].touched && !userForm.controls['email'].valid">  
+             <span *ngIf="userForm.controls['email'].hasError('email') "  style="color:red">  
+                  Email not valid  
+                   </span>  
+      
+            </p> 
+       </div>
+       
+       <div class="form-group margin_top30">
+         <!-- <label class="form-label">Subject</label> -->
+         <input class="form-control" type="text" formControlName="subject" #subject placeholder="Subject"/>
+         <p *ngIf="userForm.controls['subject'].touched && !userForm.controls['subject'].valid">  
+            <span *ngIf="userForm.controls['subject'].hasError('required') "  style="color:red">  
+                Subject required  
+                </span>  
+            
+       
+            </p>        </div>
+       <div class="form-group margin_top30">
+         <!-- <label class="form-label">Message</label> -->
+         <textarea class="form-control height_auto" rows="5" formControlName="message" #message placeholder="Message"></textarea>
+         <p *ngIf="userForm.controls['message'].touched && !userForm.controls['message'].valid">  
+            <span *ngIf="userForm.controls['message'].hasError('required') "  style="color:red">  
+                Message required  
+                </span>  
+            
+       
+            </p> 
+       </div>
+       
+       <div class="row margin_top40">
+         <div class="col-4 col-lg-3">
+             <button class="btn btn_default full_width primary_clr_bg" type="submit">Send</button>
+         </div>
+         
+       </div>
+       </form>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+   
+   </section>
+
+   <app-footer></app-footer>

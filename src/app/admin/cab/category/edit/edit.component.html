@@ -1,0 +1,131 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title" id="basic-layout-form">Edit Category</h4>
+      </div>
+      <div class="card-body">
+        <div class="px-3">
+
+          <form class="form" [formGroup]="Form" novalidate (ngSubmit)="update(Form.value)">
+
+
+
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="projectinput3">Category Name</label>
+
+                <input type="text" class="form-control" formControlName="category_name" #category_name [(ngModel)]="category.category_name"
+                />
+
+                <p *ngIf="Form.controls['category_name'].touched && !Form.controls['category_name'].valid" class="error-msg">
+                  <span *ngIf="Form.controls['category_name'].hasError('required') ">
+                    Category Name is required
+                  </span>
+                  <span *ngIf="Form.controls['category_name'].hasError('minlength') ">
+                    Category Name must have 3 characters length.
+                  </span>
+                  <span *ngIf="Form.controls['category_name'].hasError('maxlength') ">
+                    Category with in 30 characters length.
+                  </span>
+
+                </p>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="projectinput3">Body Type</label>
+
+                <select formControlName="bodytypes" class="form-control" #bodytypes [(ngModel)]="category.bodytypes">
+                  <option *ngFor="let option of types" [value]="option._id" [selected]="option._id ==category.bodytypes">{{option.name}}</option>
+                </select>
+
+
+                <p *ngIf="Form.controls['bodytypes'].touched && !Form.controls['bodytypes'].valid" class="error-msg">
+                  <span *ngIf="Form.controls['bodytypes'].hasError('required') ">
+                    Body Type is required
+                  </span>
+
+
+                </p>
+              </div>
+            </div>
+
+
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="projectinput3">Amenities</label>
+                <select multiple class='form-control' formControlName="amenities" #amenities [(ngModel)]="category.amenities">
+                  <option *ngFor="let topic of facility;" [value]="topic.name" [selected]="topic.name === amenities">{{topic.name}}</option>
+                  <option *ngFor="let topic of facility;" [value]="topic.name" [selected]="topic.name === amenities" style="display:none;">{{topic.name}}</option>
+
+                </select>
+                <p *ngIf="Form.controls['amenities'].touched && !Form.controls['amenities'].valid" class="error-msg">
+                  <span *ngIf="Form.controls['amenities'].hasError('required') ">
+                    Amenities is required
+                  </span>
+
+
+                </p>
+              </div>
+            </div>
+
+
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="projectinput3">Unit Price</label>
+
+                <input type="number" class="form-control" formControlName="unitprice" #unitprice [(ngModel)]="category.unitprice" [min]="1"
+                />
+
+                <p *ngIf="Form.controls['unitprice'].touched && !Form.controls['unitprice'].valid" class="error-msg">
+                  <span *ngIf="Form.controls['unitprice'].hasError('required') ">
+                    Unit Price Must be in numeric
+                  </span>
+
+
+                </p>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="projectinput3">Base Price</label>
+
+                <input type="number" class="form-control" formControlName="baseprice" #baseprice [(ngModel)]="category.baseprice" [min]="1"
+                />
+
+                <p *ngIf="Form.controls['baseprice'].touched && !Form.controls['baseprice'].valid" class="error-msg">
+                  <span *ngIf="Form.controls['baseprice'].hasError('required') ">
+                    Base Price Must be in numeric
+                  </span>
+
+
+                </p>
+              </div>
+            </div>
+
+         
+
+            <div class="form-actions">
+
+              <button type="submit" class="btn btn-raised btn-raised btn-primary">
+                <i class="fa fa-check-square-o"></i> Save
+              </button>
+            </div>
+
+
+
+
+
+
+
+          </form>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

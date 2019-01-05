@@ -1,0 +1,306 @@
+<div class="row" matchHeight="card">
+
+	<div class="col-xl-3 col-lg-6 col-12" *ngIf="revenue?.length > 0">
+		<div class="card gradient-blackberry">
+			<div class="card-body">
+				<div class="px-3 py-3">
+					<div class="media">
+						<div class="media-body text-left" *ngFor="let totalamt of revenue">
+							<h3 class="mb-1 white">{{this.totalamt.commission}}</h3>
+							<span><a [routerLink]="['/admin/management/rides']" target="_blank" class="white">Total Revenue</a></span>
+						</div>
+						<div class="media-right align-self-center">
+							<i class="icon-support white font-large-2 float-right"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="col-xl-3 col-lg-6 col-12" *ngIf="revenue?.length ==0">
+		<div class="card gradient-blackberry">
+			<div class="card-body">
+				<div class="px-3 py-3">
+					<div class="media">
+						<div class="media-body text-left">
+							<h3 class="mb-1 white">0</h3>
+							<span><a [routerLink]="['/admin/management/rides']" target="_blank" class="white">Total Revenue</a></span>
+						</div>
+						<div class="media-right align-self-center">
+							<i class="icon-support white font-large-2 float-right"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<div class="col-xl-3 col-lg-6 col-12">
+		<div class="card gradient-ibiza-sunset">
+			<div class="card-body">
+				<div class="px-3 py-3">
+					<div class="media">
+						<div class="media-body text-left">
+							<h3 class="mb-1 white">{{this.driverCount}}</h3>
+							<span><a [routerLink]="['/admin/management/driver']" target="_blank" class="white">Total Drivers</a></span>
+						</div>
+						<div class="media-right align-self-center">
+							<i class="icon-paper-clip white font-large-2 float-right"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-xl-3 col-lg-6 col-12">
+		<div class="card gradient-green-tea">
+			<div class="card-body">
+				<div class="px-3 py-3">
+					<div class="media">
+						<div class="media-body text-left">
+							<h3 class="mb-1 white">{{this.vehicleCount}}</h3>
+							<span><a [routerLink]="['/admin/management/vehicle']" target="_blank" class="white">Total Vehicles</a></span>
+						</div>
+						<div class="media-right align-self-center">
+							<i class="icon-speedometer white font-large-2 float-right"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-xl-3 col-lg-6 col-12">
+		<div class="card gradient-pomegranate">
+			<div class="card-body">
+				<div class="px-3 py-3">
+					<div class="media">
+						<div class="media-body text-left">
+							<h3 class="mb-1 white">{{this.count}}</h3>
+							<span><a [routerLink]="['/admin/management/user']" target="_blank" class="white">Total Users</a></span>
+						</div>
+						<div class="media-right align-self-center">
+							<i class="icon-user white font-large-2 float-right"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+
+
+
+<div class="row match-height">
+
+
+
+
+	<div class="col-xl-7 col-lg-12 col-12">
+		<div class="card">
+			<div class="card-header">
+				<h4 class="card-title">Rides</h4>
+			</div>
+			<div class="card-body">
+				<div class="card-block">
+					<canvas baseChart 
+					[chartType]="chartType"
+					[data]="chartData" 
+					[labels]="chartLabels"
+					[colors]="chartColors"
+					[options]="chartOptions"
+					[legend]="true"
+					(chartHover)="chartHovered($event)" 
+					(chartClick)="chartClicked($event)">
+				</canvas>
+
+
+
+			</div>
+		</div>
+	</div>
+</div>
+<div class="col-xl-5 col-lg-12 col-12">
+	<div class="card">
+		<div class="card-body">
+			<div class="card-block">
+				<h4 class="card-title">Rides Count</h4>
+			</div>
+
+			<div class="col-md-12">
+				<div class="form-group">
+					<ul class="list-group">
+						<li class="list-group-item">
+							<span class="badge bg-primary float-right">{{this.todayRide}}</span> Today
+						</li>
+						<li class="list-group-item">
+							<span class="badge bg-info float-right">{{this.ridesCount}}</span> This Month
+						</li>
+						<li class="list-group-item">
+							<span class="badge bg-warning float-right">{{this.totalRide}}</span> Total Rides
+						</li>
+
+					</ul>
+				</div>
+			</div>
+
+			<div class="action-buttons mt-4 mb-1 text-center">
+				<a class="btn btn-raised gradient-blackberry py-2 px-4 white mr-2"  [routerLink]="['/admin/management/rides']">View All</a>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+</div>
+<div class="row match-height">
+
+	<div class="col-xl-6 col-lg-12">
+		<div class="card">
+			<div class="card-body">
+				<div class="card-block">
+					<h4 class="card-title">Drivers</h4>
+				</div>
+				<canvas baseChart
+				[data]="pieChartData"
+				[labels]="pieChartLabels"
+				[chartType]="pieChartType"
+				(chartHover)="chartHovered($event)"
+				(chartClick)="chartClicked($event)"></canvas> 
+
+			</div>
+		</div>
+	</div>
+
+	<div class="col-xl-6 col-lg-12">
+		<div class="card">
+			<div class="card-body">
+				<div class="card-block">
+					<h4 class="card-title">Push Notification</h4>
+				</div>
+				<form class="form" [formGroup]="Form" novalidate (ngSubmit)="sendMessage(Form.value)">
+
+					<div class="col-md-12">
+						<div class="form-group">
+							<input type="radio" formControlName="user" #user   [value]="0"> Users 
+							<input type="radio" formControlName="user" #user   [value]="1"> Drivers
+							<p *ngIf="Form.controls['user'].touched && !Form.controls['user'].valid"  class="error-msg">  
+								<span *ngIf="Form.controls['user'].hasError('required') " >  
+									This field is required
+								</span>  
+
+
+							</p> 
+						</div>
+					</div>
+
+
+					<div class="col-md-12">
+						<div class="form-group">
+							<textarea class="form-control" rows="3" formControlName="message" #message ></textarea>
+							<p *ngIf="Form.controls['message'].touched && !Form.controls['message'].valid"  class="error-msg">  
+								<span *ngIf="Form.controls['message'].hasError('required') " >  
+									This field is required
+								</span>  
+
+
+							</p> 
+						</div>
+					</div>
+
+					<div class="col-md-12">
+						<div class="form-group center">
+							<button type="submit"  class="btn btn-raised gradient-blackberry py-2 px-4 white mr-2">
+								Send
+							</button>	
+						</div>
+					</div>
+				</form>	
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="row match-height">
+
+	<div class="col-xl-8 col-lg-12 col-12">
+		<div class="card">
+			<div class="card-header">
+				<h4 class="card-title">Onboard Passenger</h4>
+			</div>
+			<div class="card-body">
+				<div class="card-block">
+
+
+					<div class="media mb-1"  *ngFor="let rideUser of latestRide">
+						<img  class="media-object d-flex mr-3 bg-primary height-50 rounded-circle"  src="{{this.url}}/assets/media/users/{{rideUser.user_id.profile_image}}" *ngIf="this.rideUser.user_id.profile_image">
+						<img  class="media-object d-flex mr-3 bg-primary height-50 rounded-circle" src="{{this.url}}/assets/app-assets/img/user.png" *ngIf="!this.rideUser.user_id.profile_image">
+						<div class="media-body">
+							<h4 class="font-medium-1 mt-1 mb-0">{{rideUser.user_id.full_name}}</h4>
+							<p class="text-muted font-small-1">{{rideUser.created_at | date}}</p>
+							<span class="badge badge-success d-block d-sm-none" *ngIf="rideUser.ridestatus=='accepted'"  ><a [routerLink]="['/admin/management/ridesdetails',rideUser._id]" target="_blank" class="font-small-1">Accepted</a></span>
+							<span class="badge badge-danger d-block d-sm-none" *ngIf="rideUser.ridestatus=='cancelled'"><a [routerLink]="['/admin/management/ridesdetails',rideUser._id]" target="_blank" class="font-small-1">Cancelled</a></span>
+							<span class="badge badge-primary d-block d-sm-none" *ngIf="rideUser.ridestatus=='scheduled'"><a [routerLink]="['/admin/management/ridesdetails',rideUser._id]" target="_blank" class="font-small-1">Scheduled</a></span>
+							<span class="badge badge-info d-block d-sm-none" *ngIf="((rideUser.ridestatus=='ridenotaccepted') || (rideUser.ridestatus=='scheduleridenotaccepted') || (rideUser.ridestatus=='requested'))" ><a [routerLink]="['/admin/management/ridesdetails',rideUser._id]" target="_blank" class="font-small-1">Ride not accepted</a></span>
+							<span class="badge badge-secondary d-block d-sm-none" *ngIf="rideUser.ridestatus=='ontheway'" ><a [routerLink]="['/admin/management/ridesdetails',rideUser._id]" target="_blank" class="font-small-1">On the way</a></span>
+							<span class="badge badge-warning d-block d-sm-none" *ngIf="rideUser.ridestatus=='onride'" ><a [routerLink]="['/admin/management/ridesdetails',rideUser._id]" target="_blank" class="font-small-1">Onride</a></span>
+							<span class="badge badge-dark d-block d-sm-none" *ngIf="rideUser.ridestatus=='completed'" ><a [routerLink]="['/admin/management/ridesdetails',rideUser._id]" target="_blank" class="white font-small-1">Completed</a></span>
+
+						</div>
+
+						<span class="badge badge-success d-none d-sm-block" *ngIf="rideUser.ridestatus=='accepted'"  ><a [routerLink]="['/admin/management/ridesdetails',rideUser._id]" target="_blank" class="font-small-1">Accepted</a></span>
+						<span class="badge badge-danger d-none d-sm-block" *ngIf="rideUser.ridestatus=='cancelled'"><a [routerLink]="['/admin/management/ridesdetails',rideUser._id]" target="_blank" class="font-small-1">Cancelled</a></span>
+						<span class="badge badge-primary d-none d-sm-block" *ngIf="rideUser.ridestatus=='scheduled'"><a [routerLink]="['/admin/management/ridesdetails',rideUser._id]" target="_blank" class="font-small-1">Scheduled</a></span>
+						<span class="badge badge-info d-none d-sm-block" *ngIf="((rideUser.ridestatus=='ridenotaccepted') || (rideUser.ridestatus=='scheduleridenotaccepted') || (rideUser.ridestatus=='requested'))" ><a [routerLink]="['/admin/management/ridesdetails',rideUser._id]" target="_blank" class="font-small-1">Ride not accepted</a></span>
+						<span class="badge badge-secondary d-none d-sm-block" *ngIf="rideUser.ridestatus=='ontheway'" ><a [routerLink]="['/admin/management/ridesdetails',rideUser._id]" target="_blank" class="font-small-1">On the way</a></span>
+						<span class="badge badge-warning d-none d-sm-block" *ngIf="rideUser.ridestatus=='onride'" ><a [routerLink]="['/admin/management/ridesdetails',rideUser._id]" target="_blank" class="font-small-1">Onride</a></span>
+						<span class="badge badge-dark d-none d-sm-block" *ngIf="rideUser.ridestatus=='completed'" ><a [routerLink]="['/admin/management/ridesdetails',rideUser._id]" target="_blank" class="white font-small-1">Completed</a></span>
+
+					</div>
+
+
+
+
+				</div>
+			</div>
+		</div>
+	</div>  
+
+	<div class="col-xl-4 col-lg-12 col-12">
+		<div class="card">
+			<div class="card-header">
+				<h4 class="card-title">Active users</h4>
+			</div>
+			<div class="card-body">
+				<div class="col-md-12">
+					<div class="form-group">
+						<ul class="list-group">
+							<li class="list-group-item">
+								<span class="badge bg-primary float-right">{{this.iosUser}}</span> Ios users
+							</li>
+							<li class="list-group-item">
+								<span class="badge bg-info float-right">{{this.andoridUser}}</span> Android users													</li>
+
+							</ul>
+						</div>
+					</div>
+					<div class="action-buttons mt-4 mb-1 text-center">
+						<a class="btn btn-raised gradient-blackberry py-2 px-4 white mr-2"  [routerLink]="['/admin/management/user']">View All</a>
+					</div>
+				</div>
+			</div>
+		</div> 
+	</div>
+

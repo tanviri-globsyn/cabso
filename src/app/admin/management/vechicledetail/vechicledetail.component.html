@@ -1,0 +1,213 @@
+  <section id="striped-row-form-layouts">
+  
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                 
+                <div class="card-header">
+                        <button (click)="goBack()" class="float-right btn btn-raised btn-dark btn-sm "> <i class="fa fa-angle-double-left"></i>&nbsp;back</button>
+
+
+                      
+                    <h4 class="card-title" id="striped-row-layout-basic">Vehicle Information</h4>
+                </div>
+                <div class="card-body">
+                    <div class="px-3">
+                        <form class="form form-horizontal striped-rows form-bordered"[formGroup]="Form" novalidate (ngSubmit)="update(Form.value);">
+                            <div class="form-body">
+  
+                                  <div class="form-group row">
+                                          <label class="col-md-3 label-control" for="projectinput2">Vehicle Name</label>
+                                          <div class="col-md-9">  {{details.vehicle_name}}
+                                          </div>
+                                      </div>
+  
+                                      
+  
+                                <div class="form-group row">
+                                    <label class="col-md-3 label-control" for="projectinput1">Vehicle Owner Name</label>
+                                    <div class="col-md-9">
+                                   <a [routerLink]="['/admin/management/details',this.details.user_id._id]" target="_blank" >{{this.details.user_id.full_name}}</a>
+                                    </div>
+                                </div>
+                               
+                                <div class="form-group row">
+                                    <label class="col-md-3 label-control" for="projectinput3">Vehicle Number</label>
+                                    <div class="col-md-9">
+                                            {{details.vehicle_number}}
+                                    </div>
+                                </div>
+  
+                                <div class="form-group row last">
+                                    <label class="col-md-3 label-control" for="projectinput4">Body Type</label>
+                                    <div class="col-md-9">
+                                        {{details.body_type}}
+                                    </div>
+                                </div>
+                                <div class="form-group row last">
+                                    <label class="col-md-3 label-control" for="projectinput4">Amenities</label>
+                                    <div class="col-md-9" >
+                                     <p *ngFor ="let amenitie of this.details.amenities">{{amenitie.name}}</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row last">
+                                    <label class="col-md-3 label-control" for="projectinput4">Available Seats</label>
+                                    <div class="col-md-9">
+                                        {{details.available_seats}}
+                                    </div>
+                                </div>
+  
+                                <div class="form-group row last">
+                                    <label class="col-md-3 label-control" for="projectinput4">Vehicle Book Date</label>
+                                    <div class="col-md-9">
+                                        {{details.book_date}}
+                                    </div>
+                                </div>
+  
+                                <div class="form-group row last">
+                                    <label class="col-md-3 label-control" for="projectinput4">Vehicle Book Number</label>
+                                    <div class="col-md-9">
+                                        {{details.book_no}}
+                                    </div>
+                                </div>
+  
+                                <div class="form-group row last">
+                                    <label class="col-md-3 label-control" for="projectinput4">Insurance Date</label>
+                                    <div class="col-md-9">
+                                        {{details.insurance_date}}
+                                    </div>
+                                </div>
+  
+  
+                                <div class="form-group row last">
+                                    <label class="col-md-3 label-control" for="projectinput4">Insurance Number</label>
+                                    <div class="col-md-9">
+                                        {{details.insurance_no}}
+                                    </div>
+                                </div>
+  
+                                <div class="form-group row last">
+                                    <label class="col-md-3 label-control" for="projectinput4">Licence Date</label>
+                                    <div class="col-md-9">
+                                        {{details.licence_date}}
+                                    </div>
+                                </div>
+  
+                              
+                                <div class="form-group row last">
+                                    <label class="col-md-3 label-control" for="projectinput4">Licence Number</label>
+                                    <div class="col-md-9">
+                                        {{details.licence_no}}
+                                    </div>
+                                </div>
+  
+   
+                                <div class="form-group row last">
+                                    <label class="col-md-3 label-control" for="projectinput4">Insurance Document</label>
+                                    <div class="col-md-9">
+                                          Insurance Document  <a href="{{this.url}}/assets/media/drivers/{{details.insurancedoc}}" target="_blank" class="btn btn-info btn-round btn-just-icon" data-toggle="tooltip" data-placement="bottom" title="Download">
+                                              <i class="fa fa-download" aria-hidden="true"></i></a>  
+                                                
+                                    </div>
+                                </div>
+                                <div class="form-group row last">
+                                  <label class="col-md-3 label-control" for="projectinput4">Book Document</label>
+                                  <div class="col-md-9">
+                                          Book Document <a href="{{this.url}}/assets/media/drivers/{{details.bookdoc}}" target="_blank" class="btn btn-info btn-round btn-just-icon" data-toggle="tooltip" data-placement="bottom" title="Download">
+                              <i class="fa fa-download" aria-hidden="true"></i></a>  
+                                     
+                                  </div>
+                              </div>
+  
+                              <div class="form-group row last">
+                                <label class="col-md-3 label-control" for="projectinput4">License Document</label>
+                                <div class="col-md-9">                               
+                                      License Document <a href="{{this.url}}/assets/media/drivers/{{details.licensedoc}}" target="_blank" class="btn btn-info btn-round btn-just-icon" data-toggle="tooltip" data-placement="bottom" title="Download">
+                                   <i class="fa fa-download" aria-hidden="true"></i></a>  
+                                </div>
+                            </div>
+                                
+  
+                            <div class="form-group row last">
+                                  <label class="col-md-3 label-control" for="projectinput4">Choose Category</label>
+                                  <div class="col-md-9">                                
+                                    <select formControlName="category"  #category [(ngModel)] = "details.category"> 
+                                      <option *ngFor="let option of options" [value]="option._id" [selected]="option._id ==details.category" >{{option.category_name}}</option>
+                                    </select>
+                                    <p *ngIf="Form.controls['category'].touched && !Form.controls['category'].valid" class="error-msg">  
+                                        <span *ngIf="Form.controls['category'].hasError('required') " >  
+                                          Category required   
+                                        </span>             
+                                        </p>  
+                                  </div>
+                              </div>
+
+
+                              <div class="form-group row" *ngIf="this.inspectiontime >= this.currenttime">
+                                    <label class="col-md-3 label-control" for="projectinput1">Inspection Date</label>
+                                    <div class="col-md-9">
+                                        {{this.details.user_id.inspectionon | date:'dd/MM/yyyy' }}
+                                    </div>
+                                    <input type="hidden" formControlName="datepicker" #datepicker class="form-control" [(ngModel)]="this.details.user_id.inspectionon">
+                                </div>
+
+                                <div class="form-group row" *ngIf="this.currenttime > this.inspectiontime" >
+                                    <label class="col-md-3 label-control" for="projectinput1">Inspection date</label>
+                                    <div class="col-md-9">
+                                            <span class="badge badge-danger">Inspection out of date</span>
+                                        <input type="hidden" formControlName="datepicker" #datepicker class="form-control" [(ngModel)]="this.details.user_id.inspectionon">
+                                    </div>
+                                </div>
+                                     
+                              
+                              <div class="form-group row last">
+                                  <label class="col-md-3 label-control" for="projectinput4">Vehicle Status</label>
+                                  <div class="col-md-9">                                
+                                    <select formControlName="status"  #status [(ngModel)] = "details.status"> 
+                                        <option class="select2-dropdown" value="1">Approved </option>
+                                        <option class="select2-dropdown" value="0">Rejected</option>
+                                    </select>
+                                    <p *ngIf="Form.controls['status'].touched && !Form.controls['status'].valid" class="error-msg">  
+                                        <span *ngIf="Form.controls['status'].hasError('required') " >  
+                                          Vehicle status required   
+                                        </span>             
+                                        </p>  
+                                  </div>
+                              </div>
+                                    <input type="hidden" formControlName="user_id" #user_id [(ngModel)] = "this.details.user_id._id" >  
+                                
+<!--   
+                                <div class="form-group row last">
+                                    <label class="col-md-3 label-control" for="projectinput4">Status</label>
+                                    <div class="col-md-9"  >
+                                        <button class="btn btn-raised btn-success"  *ngIf="driver.status==1">
+                                            Approve</button>
+                                            <button class="btn btn-raised btn-danger"  *ngIf="driver.status==0">
+                                                Reject</button>
+                                    </div>
+  
+                                   
+  
+                                </div> -->
+  
+                                <div class="form-actions">
+                                     
+                                      <button type="submit" class="btn btn-raised btn-primary">
+                                          <i class="fa fa-check-square-o"></i> Save
+                                      </button>
+                                  </div>
+  
+                            </div>
+  
+                      
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+  
+  
+  </section> 
+  

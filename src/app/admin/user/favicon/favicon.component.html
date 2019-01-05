@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title" id="basic-layout-form">Favicon Setting</h4>
+      </div>
+      <div class="card-body">
+        <div class="px-3">
+          
+          
+          <form class="form" [formGroup]="Form" novalidate (ngSubmit)="addFavi(Form.value)">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="projectinput3">Favicon</label>
+                    <input type="file" id="favIcon" name="favIcon" class="form-control"  formControlName="favIcon" #favIcon />
+
+                    <p *ngIf="Form.controls['favIcon'].touched && !Form.controls['favIcon'].valid"  class="error-msg">  
+                        <span *ngIf="Form.controls['favIcon'].hasError('required') " >  
+                          favicon is required
+                            </span>  
+                        
+                   
+                        </p> 
+                    
+                  </div>
+                </div>
+                
+    <div class="col-md-12" *ngFor="let users of user">
+      <div class="form-group">
+          <img src="{{this.url}}/favicon.png" width="50" height="auto" > 
+
+      </div>
+    </div>
+     
+
+                          
+    <div class="form-actions">
+           <button type="submit"  class="btn btn-raised btn-raised btn-primary">
+          <i class="fa fa-check-square-o"></i> Save
+        </button>
+      </div>	
+    </form>
+        </div></div>
+          
+
+      </div></div>
+      </div>

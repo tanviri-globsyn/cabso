@@ -1,5 +1,5 @@
 module.exports = {
-    database:  '',   //prod
+    database:  'mongodb://localhost:27017/cabso',   //prod
     secret: 'uber'
   }
   
